@@ -53,10 +53,10 @@
 </template>
 
 <script>
-import { mapGetters, mapMutations } from "vuex";
-import sound from "~/utils/soundUtil";
+  import {mapGetters, mapMutations} from "vuex";
+  import sound from "~/utils/soundUtil";
 
-export default {
+  export default {
   data() {
     return {
       emotionStatus: {}
@@ -82,7 +82,7 @@ export default {
     async onDoEmotion(emotion) {
       try {
         this.checkAuthenticated();
-        this.emotionStatus = await this.$axios.$put(`/articles2/${this.article.id}/emotions/${emotion}`);
+        this.emotionStatus = await this.$axios.$put(`/articles/${this.article.id}/emotions/${emotion}`);
         sound.play(this.emotionStatus.myEmotionType);
       } catch (e) {
         this.$toast.error(e.response ? e.response.data.message : e);
