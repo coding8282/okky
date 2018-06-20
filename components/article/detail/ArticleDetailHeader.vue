@@ -11,12 +11,13 @@
       </div>
 
       <!-- 카운터 -->
-      <div class="ml-auto text-muted">
+      <div class="ml-auto text-secondary">
         <small class="mr-2"><icon name="eye"></icon> {{article.hitCount}}</small>
         <small><icon name="comment" scale=".85"></icon> {{article.replyCount}}</small>
       </div>
     </div>
 
+    <!--모토-->
     <p class="text-justify text-muted c-normal-font c-cute-font mb-2">{{article.writerMotto}}</p>
   </div>
 </template>
