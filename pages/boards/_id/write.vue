@@ -22,19 +22,19 @@
 
     <!-- 제목 -->
     <div class="form-group mb-2">
-      <input v-model="request.title" class="form-control form-control-sm" ref="title" id="title" 
-        placeholder="제목"  
-        :disabled="pending" 
-        minlength="1" maxlength="150" required>
+      <input v-model="request.title" class="form-control form-control-sm" ref="title" id="title"
+             placeholder="제목"
+             :disabled="pending"
+             minlength="1" maxlength="150" required>
     </div>
 
     <!-- 바디 -->
     <div class="form-group mb-2">
-      <textarea 
+      <textarea
         v-model="request.body"
-        class="form-control form-control-sm" 
-        id="content" rows="13" 
-        placeholder="5~3000자" 
+        class="form-control form-control-sm"
+        id="content" rows="13"
+        placeholder="5~3000자"
         :disabled="pending"
         minlength="5" maxlength="3000"
         required >
@@ -43,10 +43,10 @@
 
     <!-- 태그 -->
     <div class="form-group mb-2">
-      <input 
-        v-model="tagString" 
-        class="form-control form-control-sm" 
-        :disabled="pending" 
+      <input
+        v-model="tagString"
+        class="form-control form-control-sm"
+        :disabled="pending"
         required
         placeholder="ex) Spring,일상,잡담">
       <p class="form-text text-muted c-small-font">태그는 ,로 구분해주세요(1~7개)</p>
@@ -54,10 +54,11 @@
 
     <!-- 버튼 그룹 -->
     <div class="form-group">
-      <button @click="$router.back()" type="button" tag="button" class="btn btn-outline-secondary btn-sm mr-1" :disabled="pending"> 
+      <button @click="$router.back()" type="button" tag="button" class="btn btn-outline-secondary btn-sm mr-1"
+              :disabled="pending">
         <icon name="undo" scale=".8"/> 취소
       </button>
-      <button @click="init()" type="button" tag="button" class="btn btn-outline-secondary btn-sm" :disabled="pending"> 
+      <button @click="init()" type="button" tag="button" class="btn btn-outline-secondary btn-sm" :disabled="pending">
         <icon name="eraser" scale=".9"/> 지우기
       </button>
       <button class="btn btn-success btn-sm float-right" :disabled="pending">
@@ -96,8 +97,8 @@ export default {
         this.pending = true;
         this.request.tags = this.tagString.split(",");
         this.request.writerName = this.authenticatedNickName;
-        await this.$axios.$post(`/boards/${this.boardId}/articles`, this.request);
-        this.goArticleListForce(this.boardId);
+        let articleId = await this.$axios.$post(`/boards/${this.boardId}/articles`, this.request);
+        this.goArticle(articleId);
         this.$toast.success("게시글 작성을 완료하였습니다.");
       } catch (e) {
         this.$toast.error(e.response ? e.response.data.message : e);
