@@ -1,0 +1,17 @@
+version: 0.2
+
+phases:
+  install:
+    commands:
+      - npm i -g
+  build:
+    commands:
+      - npm run build
+  post_build:
+    commands:
+      - aws s3 sync dist s3://okky.org --delete --cache-control max-age=3600
+      - aws cloudfront create-invalidation --distribution-id E1FCF8ZF7R5KL7 --paths /index.html /error.html
+
+artifacts:
+  files:
+    - dist/**/*

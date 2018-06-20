@@ -1,0 +1,16 @@
+version: 0.2
+
+phases:
+  install:
+    commands:
+      - npm i -g
+  build:
+    commands:
+      - npm run build
+  post_build:
+    commands:
+      - aws s3 sync dist s3://stg.okky.org --delete --cache-control max-age=3600
+
+artifacts:
+  files:
+    - dist/**/*

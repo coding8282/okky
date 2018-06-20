@@ -1,0 +1,52 @@
+a {
+    color: black;
+}
+
+.text-muted {
+    color: #aaa !important;
+}
+
+.c-title-font {
+    font-size: 1rem;
+    text-align: justify;
+}
+
+.c-normal-font {
+    font-size: 0.9rem;
+}
+
+.c-small-font {
+    font-size: 0.7rem;
+}
+
+.c-tiny-font {
+    font-size: 0.65rem;
+}
+
+.c-cute-font {
+    font-family: "Gaegu", cursive;
+}
+
+.c-blocked-bg {
+    background-color: rgb(247, 241, 241);
+}
+
+.c-choosed-bg {
+    background-color: rgb(244, 252, 240);
+}
+
+.c-notice-bg {
+    background-color: ivory;
+}
+
+.c-text-shadow {
+    text-shadow: 1.5px 1.5px #ccc;
+}
+
+.c-img-shadow {
+    box-shadow: 2px 2px 3px 3px #ccc;
+}
+
+.c-article-border {
+    border-top: 1px solid #eee;
+}
