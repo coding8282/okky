@@ -129,7 +129,7 @@
             tags: this.tagString.split(",")
           });
           this.$toast.success("게시글을 수정하였습니다.");
-          this.goDetail();
+          this.goArticle(this.articleId);
         } catch (e) {
           this.$toast.error(e.response ? e.response.data.message : e);
         } finally {
@@ -146,9 +146,6 @@
       focus() {
         this.$refs.content.focus();
       },
-      goDetail() {
-        this.$router.replace(`/articles/${this.articleId}`);
-      }
     },
     created() {
       this.loadArticle();

@@ -1,6 +1,6 @@
 import Vue from "vue";
-import { mapGetters } from "vuex";
-import { createCognitoUser, getCurrentCognitoUser } from "~/utils/cognitoUtil";
+import {mapGetters} from "vuex";
+import {createCognitoUser, getCurrentCognitoUser} from "~/utils/cognitoUtil";
 
 Vue.mixin({
     computed: {
@@ -41,6 +41,9 @@ Vue.mixin({
                 }
             });
         },
+      goArticle(id) {
+        this.$router.push(`/articles/${id}`);
+      },
         goArticleList(boardId) {
             this.$router.push(`/boards/${boardId}/articles`);
         },
