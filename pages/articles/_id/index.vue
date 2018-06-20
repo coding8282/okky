@@ -32,30 +32,35 @@
       </div>
     </section>
 
-    <!-- 답글 -->
+    <!--답글 영역-->
     <section class="border mt-3" :class="{'py-2':pendingReplies}">
       <ListLoader v-if="pendingReplies"/>
       <div v-else>
+        <!--답글 헤더-->
         <header class="p-2 bg-light">
-          <span><icon name="comment" color="#aaa"/> 답글</span>
+          <span><icon name="comment" color="#aaa"/> 답글 {{article.replyCount}}</span>
           <icon v-if="pendingReplies" name="spinner" scale="1.6" color="gray" pulse class="float-right"/>
         </header>
+
+        <!--답글-->
         <Reply @replyDeleteCompleted="loadReplies()" v-for="reply in replies" :key="reply.id" :reply="reply"/>
-        <ReplyWrite @replyWroteCompleted="onReplyWroteCompleted()"/>        
+
+        <!--답글 쓰기-->
+        <ReplyWrite @replyWroteCompleted="onReplyWroteCompleted()"/>
       </div>
     </section>
   </div>
 </template>
 
 <script>
-import ArticleDetailHeader from "@/components/article/detail/ArticleDetailHeader";
-import ArticleDetailContent from "@/components/article/detail/ArticleDetailContent";
-import ArticleDetailControl from "@/components/article/detail/ArticleDetailControl";
-import Reply from "@/components/reply/Reply";
-import ReplyWrite from "@/components/reply/ReplyWrite";
-import { mapMutations, mapGetters } from "vuex";
+  import ArticleDetailHeader from "@/components/article/detail/ArticleDetailHeader";
+  import ArticleDetailContent from "@/components/article/detail/ArticleDetailContent";
+  import ArticleDetailControl from "@/components/article/detail/ArticleDetailControl";
+  import Reply from "@/components/reply/Reply";
+  import ReplyWrite from "@/components/reply/ReplyWrite";
+  import {mapGetters, mapMutations} from "vuex";
 
-export default {
+  export default {
   data() {
     return {
       pendingArticle: true,
