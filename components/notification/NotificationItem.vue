@@ -27,9 +27,24 @@
         <timeago :since="notification.notifiedOn" :auto-update="60"/>
       </small>
       <div>
-        <a v-if="notification.read" @click="toggleRead()" class="text-secondary mr-4"><small><icon name="bullseye" class="text-primary" scale=".9"/></small></a>
-        <a v-else @click="toggleRead()" class="text-secondary mr-4"><small><icon name="bullseye" scale=".9"/></small></a>
-        <a @click="removeRead()" class="text-danger"><small><icon name="trash-alt" scale=".9"/></small></a>
+        <!--읽음 확인-->
+        <a v-if="notification.read" @click="toggleRead()" class="text-secondary mr-3">
+          <small>
+            <icon name="bullseye" class="text-primary" scale="1.05"/>
+          </small>
+        </a>
+        <a v-else @click="toggleRead()" class="text-secondary mr-3">
+          <small>
+            <icon name="bullseye" scale="1.05"/>
+          </small>
+        </a>
+
+        <!--읽음 삭제-->
+        <a @click="removeRead()" class="text-danger">
+          <small>
+            <icon name="trash-alt" scale="1.05"/>
+          </small>
+        </a>
       </div>
     </div>
   </div>
