@@ -16,16 +16,26 @@
 
       <!-- 버튼 -->
       <div v-if="reply.repliedByMe" class="ml-auto">
+        <!--로더-->
         <icon v-if="pendingUpdate||pendingDelete" name="spinner" scale=".7" color="gray" pulse/>
-        <button v-if="!editing" @click="onEdit()" :disabled="pendingDelete" class="btn btn-outline-secondary px-2 py-1 mr-1 border-0 c-normal-font">수정</button>
-        <button v-else @click="onConfirm()" :disabled="pendingUpdate" class="btn btn-outline-success px-2 py-1 mx-2 c-normal-font">확인</button>
-        <button v-if="!editing" @click="onDelete()" :disabled="pendingDelete" class="btn btn-outline-danger px-2 py-1 border-0 c-normal-font">삭제</button>
-        <button v-else @click="onCancel()" :disabled="pendingUpdate" class="btn btn-outline-secondary px-2 py-1 c-normal-font">취소</button>
+
+        <!--수정-->
+        <a v-if="!editing" @click="onEdit()" :disabled="pendingDelete" class="px-2 py-1 mr-1 c-normal-font">수정</a>
+
+        <!--확인-->
+        <a v-else @click="onConfirm()" :disabled="pendingUpdate" class="px-2 py-1 mx-1 c-normal-font">확인</a>
+
+        <!--삭제-->
+        <a v-if="!editing" @click="onDelete()" :disabled="pendingDelete"
+           class="text-danger px-2 py-1 c-normal-font">삭제</a>
+
+        <!--취소-->
+        <a v-else @click="onCancel()" :disabled="pendingUpdate" class="px-2 py-1 c-normal-font">취소</a>
       </div>
 
       <!-- 관리자 관리용 버튼 -->
       <div v-if="isAdmin" class="ml-1" :class="{'ml-auto':!reply.repliedByMe}">
-        <button v-if="!editing" @click="onDeleteForce()" :disabled="pendingDelete" class="btn btn-outline-danger btn-sm px-2 py-1 border-0 c-normal-font">강제 삭제</button>
+        <a v-if="!editing" @click="onDeleteForce()" :disabled="pendingDelete" class="px-2 py-1 c-normal-font">강제 삭제</a>
       </div>
     </div>
 
@@ -54,10 +64,10 @@
 </template>
 
 <script>
-import ReplyVote from "./ReplyVote";
-import CommentSection from "@/components/comment/CommentSection";
+  import ReplyVote from "./ReplyVote";
+  import CommentSection from "@/components/comment/CommentSection";
 
-export default {
+  export default {
   components: {
     ReplyVote,
     CommentSection
