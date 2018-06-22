@@ -41,9 +41,9 @@ Vue.mixin({
                 }
             });
         },
-      goArticle(id) {
-        this.$router.push(`/articles/${id}`);
-      },
+        goArticle(id) {
+          this.$router.push(`/articles/${id}`);
+        },
         goArticleList(boardId) {
             this.$router.push(`/boards/${boardId}/articles`);
         },
