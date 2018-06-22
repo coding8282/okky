@@ -84,9 +84,9 @@
         }
       },
       async onDoEmotion(emotion) {
+        this.checkAuthenticated();
         try {
           this.pending = true;
-          this.checkAuthenticated();
           this.emotionStatus = await this.$axios.$put(`/articles/${this.article.id}/emotions/${emotion}`);
           sound.play(this.emotionStatus.myEmotionType);
         } catch (e) {
@@ -96,8 +96,8 @@
         }
       },
       async onToggleScrap() {
+        this.checkAuthenticated();
         try {
-          this.checkAuthenticated();
           let count = await this.$axios.$put(`/articles/${this.article.id}/scraps/toggle`);
           this.setArticleScrapCount(count);
           this.toggleScrap();
