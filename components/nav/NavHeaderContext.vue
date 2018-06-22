@@ -65,7 +65,9 @@ export default {
     }
   },
   mounted() {
-    this.installNotificationCounter();
+    if (this.isAuthenticated) {
+      this.installNotificationCounter();
+    }
   }
 };
 </script>
