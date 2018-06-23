@@ -16,15 +16,10 @@
 </template>
 
 <script>
-import NavHeaderContext from "./NavHeaderContext";
-import NavHeaderMenu from "./NavHeaderMenu";
+  import NavHeaderContext from "./NavHeaderContext";
+  import NavHeaderMenu from "./NavHeaderMenu";
 
-export default {
-  computed: {
-    isAdmin() {
-      return this.$store.getters["contextModule/isAdmin"];
-    }
-  },
+  export default {
   components: {
     NavHeaderContext,
     NavHeaderMenu
