@@ -43,7 +43,8 @@
         </header>
 
         <!--답글-->
-        <Reply @replyDeleteCompleted="loadReplies()" v-for="reply in replies" :key="reply.id" :reply="reply"/>
+        <Reply @replyDeleteCompleted="loadReplies()" @pinToggled="loadReplies()" v-for="reply in replies"
+               :key="reply.id" :reply="reply"/>
 
         <!--답글 쓰기-->
         <ReplyWrite @replyWroteCompleted="onReplyWroteCompleted()"/>
