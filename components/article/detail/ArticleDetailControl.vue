@@ -30,7 +30,7 @@
 
       <!-- 블락 -->
       <button @click="onToggleBlock()" class="btn btn-outline-warning btn-sm px-1 py-0 border-0" >
-        <icon name="ban" scale=".8"/> 
+        <icon name="ban" scale=".8"/>
         <span v-if="article.blocked"> 해제</span>
         <span v-else> 블락</span>
       </button>
@@ -45,11 +45,10 @@
 </template>
 
 <script>
-import { mapGetters, mapMutations } from "vuex";
-import ArticleDetailControlEmotion from "./ArticleDetailControlEmotion";
-import sound from "~/utils/soundUtil";
+  import {mapGetters, mapMutations} from "vuex";
+  import ArticleDetailControlEmotion from "./ArticleDetailControlEmotion";
 
-export default {
+  export default {
   components: {
     ArticleDetailControlEmotion
   },
