@@ -1,11 +1,10 @@
 # 옼희
-[https://okky.org](https://okky.org)
+**[https://okky.org](https://okky.org)**
 
-옼희는 [okky.kr](https://okky.kr)에 SNS 기능을 덧붙인 사이트입니다.
-
-우리나라 개발자 취준생 표준포트폴리오는 '게시판'인데요, okky도 게시판의 모임이고 okky를 자주 사용하는 사용자로서, 비슷한 시스템을 
-만들어보고 싶었습니다. 다만 **Distributed System 컨셉(MSA)을 적용하고, 알맹이를 DDD 컨셉에 모델링해서 클라우드 환경에 호스팅해 리얼하게 
-동작하도록 하는 것이 목표**입니다.
+옼희는 [okky.kr](https://okky.kr)에 SNS 기능을 덧붙인 사이트입니다. 우리나라 개발자 취준생 표준포트폴리오는 '게시판'인데요, 
+okky도 게시판의 모임이고 또 okky를 자주 사용하는 사용자로서 비슷한 시스템을 만들어보고 싶었습니다. 
+다만 **Domain Driven Design에 입각하여 알맹이를 풍부하게 설계해고, 클라우드 
+환경에 호스팅해 리얼하게 동작하도록 하는 것이 목표**입니다.
 
 # 개요
 옼희는 6개의 마이크로 서비스로 구성되어 있습니다. 각 서비스의 알맹이(컨텐츠)는 DDD의 사상을 따르고,
@@ -13,12 +12,12 @@
 **모바일웹에서 6개의 마이크로 서비스와 통신**합니다. 단, 중간에 API Gateway를 경유하며 인증 및 Throwtling 
 등을 제어하여 클라이언트에 일관적인 API 경험을 제공합니다.
 
- * okky-article: 게시글 컨텍스트. 핵심컨텍스트.
- * okky-member: 회원 컨텍스트.
- * okky-like: 좋아요(공감) 컨텍스트.
- * okky-reply: 답글 컨텍스트.
- * okky-comment: 코멘트 컨텍스트(대댓글).
- * okky-notification: 알리미 컨텍스트.
+ * [okky-article](https://github.com/coding8282/okky-article): 게시글 컨텍스트. 핵심컨텍스트.
+ * [okky-member](https://github.com/coding8282/okky-member): 회원 컨텍스트.
+ * [okky-like](https://github.com/coding8282/okky-like): 좋아요(공감) 컨텍스트.
+ * [okky-reply](https://github.com/coding8282/okky-reply): 답글 컨텍스트.
+ * [okky-comment](https://github.com/coding8282/okky-comment): 코멘트 컨텍스트(대댓글).
+ * [okky-notification](https://github.com/coding8282/okky-notification): 알리미 컨텍스트.
 
 ![](./static/image/context-map.png)
 
