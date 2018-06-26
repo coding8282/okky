@@ -7,6 +7,9 @@
         <nuxt-link to="/boards/notice/articles" class="float-right">
           <icon name="ellipsis-h" color="gray"/>
         </nuxt-link>
+        <nuxt-link v-if="isAdmin" to="/boards/notice/write" class="float-right mr-2">
+          <icon name="pencil-alt" color="gray" scale=".85"/>
+        </nuxt-link>
       </h4>
       <ListLoader v-if="pendingNotices"/>
       <div v-else>
@@ -47,6 +50,9 @@
         <nuxt-link to="/boards/life/articles">
           <icon name="ellipsis-h" color="gray" class="float-right"/>
         </nuxt-link>
+        <nuxt-link v-if="isAuthenticated" to="/boards/life/write" class="float-right mr-2">
+          <icon name="pencil-alt" color="gray" scale=".85"/>
+        </nuxt-link>
       </h4>
       <ListLoader v-if="pendingLifes"/>
       <div v-else>
@@ -66,6 +72,9 @@
         <nuxt-link to="/boards/qna/articles" class="float-right">
           <icon name="ellipsis-h" color="gray"/>
         </nuxt-link>
+        <nuxt-link v-if="isAuthenticated" to="/boards/qna/write" class="float-right mr-2">
+          <icon name="pencil-alt" color="gray" scale=".85"/>
+        </nuxt-link>
       </h4>
       <ListLoader v-if="pendingQnas"/>
       <div v-else>
@@ -81,12 +90,15 @@
     <!-- 배너 -->
     <HomeArchBanner/>
 
-    <!-- 스터디 -->
+    <!-- 버그/건의사항 -->
     <section class="mb-5">
       <h4 class="c-text-shadow">
         <icon :name="'bug'|toBoardIcon" color="#999"/> 버그/건의사항
         <nuxt-link to="/boards/bug/articles" class="float-right">
           <icon name="ellipsis-h" color="gray"/>
+        </nuxt-link>
+        <nuxt-link v-if="isAuthenticated" to="/boards/bug/write" class="float-right mr-2">
+          <icon name="pencil-alt" color="gray" scale=".85"/>
         </nuxt-link>
       </h4>
       <ListLoader v-if="pendingStudies"/>
@@ -103,11 +115,11 @@
 </template>
 
 <script>
-import HomeArticleListItem from "./HomeArticleListItem";
-import ArticleNoticeItem from "~/components/article/list/ArticleNoticeItem";
-import HomeArchBanner from "@/components/home/HomeArchBanner";
+  import HomeArticleListItem from "./HomeArticleListItem";
+  import ArticleNoticeItem from "~/components/article/list/ArticleNoticeItem";
+  import HomeArchBanner from "@/components/home/HomeArchBanner";
 
-export default {
+  export default {
   components: {
     HomeArticleListItem,
     ArticleNoticeItem,
