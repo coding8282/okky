@@ -96,3 +96,5 @@ AWS 서비스를 이용하고 있으며 prod, stg, dev 환경을 완전하게 �
  형식으로 통합합니다. Eventual Consistency와 느슨한 결합을 달성하는 주요 수단으로 이용합니다.
  * CI/CD: AWS Code 시리즈를 적극적으로 활용해 배포 프로세스를 간결하고 빠르게 가져갑니다. GitHub -> CodeBuild -> CodeDeploy로 
  프로세스를 자동화하며, 이 과정을 CodePipeline으로 간소화하여 진행합니다.
+
+![](static/image/infra.png)
