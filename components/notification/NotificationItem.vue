@@ -2,23 +2,42 @@
   <div class="c-article-border px-2 pt-1" :class="{'l-notification-bg':!notification.read}">
     <!-- 알림 -->
     <div class="d-flex">
-      <img :src="getProfileImage(notification.writerId)" width="40" height="40" :alt="notification.writerName" class="rounded-circle">
+      <template v-if="notification.event==='ReplyWroteNoti'">
+        <img :src="getProfileImage(notification.writerId)" width="40" height="40" :alt="notification.writerName"
+             class="rounded-circle">
 
-      <!-- 알림 종류 -->
-      <nuxt-link @click.native="onGoArticle()" :to="`/articles/${notification.articleId}`" class="ml-1 c-normal-font">
-        <span v-if="notification.context==='YOURS'">
-          <b>{{notification.replierName}}</b>님이 당신의 게시글에 답글을 남겼습니다
-        </span>
-        <span v-else-if="notification.context==='ADVISORY'" class="ml-2">
-          <b>{{notification.articleWriterName}}</b>님이 본인 게시글에 답글을 남겼습니다
-        </span>
-        <span v-else-if="notification.context==='EACH_OTHER'" class="ml-2">
-          <b>{{notification.articleWriterName}}</b>님의 게시글에 {{notification.replierName}}님이 답글을 남겼습니다
-        </span>
+        <!-- 알림 종류 -->
+        <nuxt-link @click.native="onGoArticle()" :to="`/articles/${notification.articleId}`" class="ml-1 c-normal-font">
+          <span v-if="notification.context==='YOURS'">
+            <b>{{notification.replierName}}</b>님이 당신의 게시글에 답글을 남겼습니다
+          </span>
+          <span v-else-if="notification.context==='ADVISORY'" class="ml-2">
+            <b>{{notification.articleWriterName}}</b>님이 본인 게시글에 답글을 남겼습니다
+          </span>
+          <span v-else-if="notification.context==='EACH_OTHER'" class="ml-2">
+            <b>{{notification.articleWriterName}}</b>님의 게시글에 {{notification.replierName}}님이 답글을 남겼습니다
+          </span>
 
-        <!-- 내용 -->
-        <small class="text-muted text-justify ml-2 d-block">{{notification.replyBody}}</small>
-      </nuxt-link>
+          <!-- 내용 -->
+          <small class="text-muted text-justify ml-2 d-block">{{notification.replyBody}}</small>
+        </nuxt-link>
+      </template>
+
+      <template v-else-if="notification.event==='ReplyPinnedNoti'">
+        <img :src="getProfileImage(notification.articleWriterId)" width="40" height="40" :alt="notification.writerName"
+             class="rounded-circle">
+
+        <nuxt-link v-if="notification.event==='ReplyPinnedNoti'" @click.native="onGoArticle()"
+                   :to="`/articles/${notification.articleId}`" class="ml-1 c-normal-font">
+          <span>
+            <b>{{notification.articleWriterName}}</b>님이 당신의 답글을 고정하였습니다.
+          </span>
+          <span>
+            <!-- 메모 -->
+            <small class="text-muted text-justify ml-2 d-block">{{notification.pinMemo}}</small>
+          </span>
+        </nuxt-link>
+      </template>
     </div>
 
     <!-- 컨트롤 -->
@@ -68,9 +87,6 @@ export default {
       if (!this.notification.read) {
         this.toggleRead();
       }
-    },
-    toggleShowControl() {
-      this.showControl = !this.showControl;
     },
     async toggleRead() {
       try {
