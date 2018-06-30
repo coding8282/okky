@@ -54,7 +54,7 @@ export default {
     },
     async loadReplyWroteNotificationCount() {
       try {
-        this.notificationCount = await this.$axios.$get(`/members/me/notifications/reply-wrote/count`);
+        this.notificationCount = await this.$axios.$get(`/members/me/notifications/count`);
       } catch (e) {
         this.$toast.error(e.response ? e.response.data.message : e);
       }

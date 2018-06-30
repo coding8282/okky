@@ -13,7 +13,7 @@
         <template>
           <div v-for="notification in notifications" :key="notification.id">
             <NotificationItem @readRemoved="onReadRemoved" :notification="notification"/>
-          </div>          
+          </div>
         </template>
       </template>
       <ArticleEmpty v-else/>
@@ -22,9 +22,9 @@
 </template>
 
 <script>
-import NotificationItem from "@/components/notification/NotificationItem";
+  import NotificationItem from "@/components/notification/NotificationItem";
 
-export default {
+  export default {
   components: {
     NotificationItem
   },
@@ -57,7 +57,7 @@ export default {
     },
     async onMarkReadAll() {
       try {
-        await this.$axios.$put(`/members/me/notifications/reply-wrote/read-all`);
+        await this.$axios.$put(`/members/me/notifications/read-all`);
         _.forEach(this.notifications, notification => (notification.read = true));
       } catch (e) {
         this.$toast.error(e.response ? e.response.data.message : e);
@@ -66,7 +66,7 @@ export default {
     async onLoad() {
       try {
         this.pending = true;
-        let { content, paging } = await this.$axios.$get(`/members/me/notifications/reply-wrote`);
+        let {content, paging} = await this.$axios.$get(`/members/me/notifications`);
         this.notifications = content;
         this.paging = paging;
       } catch (e) {
