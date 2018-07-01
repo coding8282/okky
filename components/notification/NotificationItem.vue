@@ -3,6 +3,7 @@
     <notification-item-reply-wrote :notification="notification"/>
     <notification-item-reply-pinned :notification="notification"/>
     <notification-item-emoted :notification="notification"/>
+    <notification-item-commented :notification="notification"/>
 
     <notification-item-control :notification="notification"/>
   </div>
@@ -13,9 +14,11 @@
   import NotificationItemReplyWrote from './NotificationItemReplyWrote';
   import NotificationItemReplyPinned from './NotificationItemReplyPinned';
   import NotificationItemEmoted from "./NotificationItemEmoted";
+  import NotificationItemCommented from "./NotificationItemCommented";
 
   export default {
     components: {
+      NotificationItemCommented,
       NotificationItemControl,
       NotificationItemReplyWrote,
       NotificationItemReplyPinned,
