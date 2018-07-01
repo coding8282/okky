@@ -2,6 +2,7 @@
   <div class="c-article-border px-2 pt-1" :class="{'l-notification-bg':!notification.read}">
     <notification-item-reply-wrote :notification="notification"/>
     <notification-item-reply-pinned :notification="notification"/>
+    <notification-item-emoted :notification="notification"/>
 
     <notification-item-control :notification="notification"/>
   </div>
@@ -11,12 +12,14 @@
   import NotificationItemControl from './NotificationItemControl';
   import NotificationItemReplyWrote from './NotificationItemReplyWrote';
   import NotificationItemReplyPinned from './NotificationItemReplyPinned';
+  import NotificationItemEmoted from "./NotificationItemEmoted";
 
   export default {
     components: {
       NotificationItemControl,
       NotificationItemReplyWrote,
       NotificationItemReplyPinned,
+      NotificationItemEmoted,
     },
     props: {
       notification: {
