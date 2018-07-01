@@ -6,6 +6,7 @@
     <!--알림-->
     <nuxt-link v-if="notification.event==='ReplyPinnedNoti'" @click.native="onGoArticle()" :to="`/articles/${notification.articleId}`" class="ml-1 c-normal-font">
       <span class="ml-1">
+        <icon name='map-pin' color="#777" scale="1.1" class="mr-1"/>
         <b>{{notification.articleWriterName}}</b>님이 당신의 답글을 고정하였습니다.
       </span>
       <span>
