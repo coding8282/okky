@@ -3,7 +3,8 @@
     <!-- 공지사항 -->
     <section class="mb-5">
       <h4 class="c-text-shadow">
-        <icon :name="'notice'|toBoardIcon" color="#999"/> 공지사항
+        <icon :name="'notice'|toBoardIcon" color="#999"/>
+        공지사항
         <nuxt-link to="/boards/notice/articles" class="float-right">
           <icon name="ellipsis-h" color="gray"/>
         </nuxt-link>
@@ -24,7 +25,10 @@
 
     <!-- 베스트/CHOICE -->
     <section class="mb-5">
-      <h4 class="c-text-shadow"><icon name="thumbs-up" color="#999"/> BEST/CHOICE</h4>
+      <h4 class="c-text-shadow">
+        <icon name="thumbs-up" color="#999"/>
+        BEST/CHOICE
+      </h4>
       <ListLoader v-if="pendingBests"/>
       <div v-else>
         <template v-if="bests.length">
@@ -46,7 +50,8 @@
     <!-- 사는얘기 -->
     <section class="mb-5">
       <h4 class="c-text-shadow">
-        <icon :name="'life'|toBoardIcon" color="#999"/> 사는얘기
+        <icon :name="'life'|toBoardIcon" color="#999"/>
+        사는얘기
         <nuxt-link to="/boards/life/articles">
           <icon name="ellipsis-h" color="gray" class="float-right"/>
         </nuxt-link>
@@ -68,7 +73,8 @@
     <!-- Q&A -->
     <section class="mb-5">
       <h4 class="c-text-shadow">
-        <icon :name="'qna'|toBoardIcon" color="#999"/> Q&amp;A
+        <icon :name="'qna'|toBoardIcon" color="#999"/>
+        Q&amp;A
         <nuxt-link to="/boards/qna/articles" class="float-right">
           <icon name="ellipsis-h" color="gray"/>
         </nuxt-link>
@@ -93,7 +99,8 @@
     <!-- 버그/건의사항 -->
     <section class="mb-5">
       <h4 class="c-text-shadow">
-        <icon :name="'bug'|toBoardIcon" color="#999"/> 버그/건의사항
+        <icon :name="'bug'|toBoardIcon" color="#999"/>
+        버그/건의사항
         <nuxt-link to="/boards/bug/articles" class="float-right">
           <icon name="ellipsis-h" color="gray"/>
         </nuxt-link>
@@ -120,68 +127,73 @@
   import HomeArchBanner from "@/components/home/HomeArchBanner";
 
   export default {
-  components: {
-    HomeArticleListItem,
-    ArticleNoticeItem,
-    HomeArchBanner
-  },
-  data() {
-    return {
-      notices: [],
-      bests: [],
-      choices: [],
-      lifes: [],
-      qnas: [],
-      bugs: [],
-      pendingNotices: true,
-      pendingBests: true,
-      pendingChoices: true,
-      pendingLifes: true,
-      pendingQnas: true,
-      pendingStudies: true
-    };
-  },
-  async created() {
-    this.loadFromBoard("notice", 2).then(notices => {
-      this.notices = notices;
-      this.pendingNotices = false;
-    });
+    components: {
+      HomeArticleListItem,
+      ArticleNoticeItem,
+      HomeArchBanner
+    },
+    data() {
+      return {
+        notices: [],
+        bests: [],
+        choices: [],
+        lifes: [],
+        qnas: [],
+        bugs: [],
+        pendingNotices: true,
+        pendingBests: true,
+        pendingChoices: true,
+        pendingLifes: true,
+        pendingQnas: true,
+        pendingStudies: true
+      };
+    },
+    async created() {
+      this.loadFromBoard("notice", 2).then(notices => {
+        this.notices = notices;
+        this.pendingNotices = false;
+      });
 
-    this.loadFromBoard("best", 3).then(bests => {
-      this.bests = bests;
-      this.pendingBests = false;
-    });
+      this.loadFromBoard("best", 3).then(bests => {
+        this.bests = bests;
+        this.pendingBests = false;
+      });
 
-    this.loadFromBoard("choice", 2).then(choices => {
-      this.choices = choices;
-      this.pendingChoices = false;
-    });
+      this.loadFromBoard("choice", 2).then(choices => {
+        this.choices = choices;
+        this.pendingChoices = false;
+      });
 
-    this.loadFromBoard("life", 10).then(lifes => {
-      this.lifes = lifes;
-      this.pendingLifes = false;
-    });
+      this.loadFromBoard("life", 10).then(lifes => {
+        this.lifes = lifes;
+        this.pendingLifes = false;
+      });
 
-    this.loadFromBoard("qna", 10).then(qnas => {
-      this.qnas = qnas;
-      this.pendingQnas = false;
-    });
+      this.loadFromBoard("qna", 10).then(qnas => {
+        this.qnas = qnas;
+        this.pendingQnas = false;
+      });
 
-    this.loadFromBoard("bug", 3).then(bugs => {
-      this.bugs = bugs;
-      this.pendingStudies = false;
-    });
-  },
-  methods: {
-    async loadFromBoard(boardId, pageSize) {
-      let { content } = await this.$axios.$get(`/boards/${boardId}/articles?pageSize=${pageSize}`);
-      if (content.length) {
-        let articleIds = _.map(content, "id").join();
-        let replyCounts = await this.$axios.$get(`/articles/${articleIds}/replies/count`);
-        for (let i = 0; i < content.length; i++) content[i].replyCount = replyCounts[i];
-      }
-      return content;
+      this.loadFromBoard("bug", 3).then(bugs => {
+        this.bugs = bugs;
+        this.pendingStudies = false;
+      });
+    },
+    methods: {
+      async loadFromBoard(boardId, pageSize) {
+        let {content} = await this.$axios.$get(`/boards/${boardId}/articles?pageSize=${pageSize}`);
+        if (content.length) {
+          try {
+            let articleIds = _.map(content, "id").join();
+            let replyCounts = await this.$axios.$get(`/articles/${articleIds}/replies/count`);
+            for (let i = 0; i < content.length; i++)
+              content[i].replyCount = replyCounts[i];
+          } catch (e) {
+            console.log(e);
+          }
+        }
+        return content;
+      },
     }
-  }
-};
+  };
 </script>

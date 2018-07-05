@@ -4,6 +4,7 @@
     <notification-item-reply-pinned :notification="notification"/>
     <notification-item-emoted :notification="notification"/>
     <notification-item-commented :notification="notification"/>
+    <notification-item-article-scrapped :notification="notification"/>
 
     <notification-item-control :notification="notification"/>
   </div>
@@ -15,14 +16,16 @@
   import NotificationItemReplyPinned from './NotificationItemReplyPinned';
   import NotificationItemEmoted from "./NotificationItemEmoted";
   import NotificationItemCommented from "./NotificationItemCommented";
+  import NotificationItemArticleScrapped from "./NotificationItemArticleScrapped";
 
   export default {
     components: {
-      NotificationItemCommented,
       NotificationItemControl,
       NotificationItemReplyWrote,
       NotificationItemReplyPinned,
       NotificationItemEmoted,
+      NotificationItemCommented,
+      NotificationItemArticleScrapped,
     },
     props: {
       notification: {
