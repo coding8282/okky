@@ -1,13 +1,13 @@
 <template>
-  <div v-if="notification.event==='ReplyPinnedNoti'">
+  <div v-if="notification.event==='ArticleScrappedNoti'">
     <!--쁘사-->
     <img :src="getProfileImage(notification.articleWriterId)" width="40" height="40" :alt="notification.writerName" class="rounded-circle">
 
     <!--알림-->
     <nuxt-link @click.native="onGoArticle()" :to="`/articles/${notification.articleId}`" class="ml-1 c-normal-font">
       <span class="ml-1">
-        <icon name='map-pin' color="#777" scale="1.1" class="mr-1"/>
-        <b>{{notification.articleWriterName}}</b>님이 당신의 답글을 고정하였습니다.
+        <icon name='bookmark' scale="1.1" class="mr-1 text-success"/>
+        <b>{{notification.scrapperName}}</b>님이 당신의 게시글을 스크랩하였습니다.
       </span>
       <span>
         <!-- 메모 -->
