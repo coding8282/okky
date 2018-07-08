@@ -9,7 +9,7 @@
         </div>
       </div>
     </form>
-    
+
     <!-- 메뉴 -->
     <ul class="navbar-nav mr-auto mt-2">
       <li class="nav-item">
@@ -38,7 +38,7 @@
         </nuxt-link>
       </li>
       <li class="nav-item">
-        <nuxt-link @click.native="closeToggler()" to="/about" class="nav-link l-github mb-1 py-0">
+        <nuxt-link @click.native="closeToggler()" to="/miscs/about" class="nav-link l-github mb-1 py-0">
           <icon name="info-circle" scale=".75"/> About
         </nuxt-link>
       </li>
