@@ -8,6 +8,9 @@
         <nuxt-link to="/boards/notice/articles" class="float-right">
           <icon name="ellipsis-h" color="gray"/>
         </nuxt-link>
+        <nuxt-link to="/miscs/changes" class="float-right mr-2">
+          <icon name="bars" color="gray"/>
+        </nuxt-link>
         <nuxt-link v-if="isAdmin" to="/boards/notice/write" class="float-right mr-2">
           <icon name="pencil-alt" color="gray" scale=".85"/>
         </nuxt-link>
