@@ -16,7 +16,7 @@
         <div>
           <icon :name="icon(log.type)" class="mr-1 text-primary"/>
           <i class="text-dark text-justify">{{log.body}}</i>
-          <a @click="onDelete(log.id)" class="btn btn-outline-danger py-0 px-1 mx-1 border-0">X</a>
+          <a v-if="isAdmin" @click="onDelete(log.id)" class="btn btn-outline-danger py-0 px-1 mx-1 border-0">X</a>
         </div>
       </div>
     </template>
