@@ -1,5 +1,4 @@
 # 옼희
-**[https://okky.org](https://okky.org)**
 
 옼희는 [okky.kr](https://okky.kr)에 SNS 기능을 덧붙인 사이트입니다. 우리나라 2000년대 초반에는 개발자 커뮤니티가 여기저기 산재해 있던 춘추전국시대라고 합니다. 그런데 okky 창시자 분이 대통합을 하기 위해 okky를 만들기 시작했다고 합니다. 이 시스템은 그 때로 돌아가서 똑같이 만든다는 가정하에 작업하였습니다. 다만 여러 SNS 기능과 최신 기술을 접목하였습니다. 그리하여 본 시스템은 **Domain Driven Design에 입각하여 알맹이를 풍부하게 설계해고, 클라우드 환경에 호스팅해 리얼하게 동작하도록 하는 것이 목표**입니다.
 
@@ -29,8 +28,6 @@ jquery를 이용하여 **화면에 대한 최소한의 지식으로 구성**하�
 
 ![](./static/image/screen1.png)
 ![](./static/image/screen2.png)
-
-[여기](https://okky.org/articles/a-766a2350bf2e41c)를 클릭하면 실제 페이지로 이동할 수 있습니다.
 
 # 서버
 Domain Driven Design 컨셉을 따르며, port And adaptor 아키텍처를 채택합니다. **서비스별로 나누어진 Bounded Context와 Rich Domain Model로 알맹이를 채웁니다.** 모델은 일차적으로 자신의 상태를 책임지며 응용서비스에게 필요한 최소한의 행동을 노출합니다. 응용서비스는 모델 및 리파지터리 등과 협력하여 유스케이스를 소화하고 트랜잭션을 담당합니다. 하나의 유스케이스가 여러 Aggregate를 수정하려 할 때는 트랜잭션 적합성을 분석하고, 도메인 이벤트를 이용하여 Eventual Consistency를 달성합니다. 각 컨텍스트는 느슨한 결합을 위해 큐나 RESTful로 통합합니다. 옼희는 Infrastructure로 주로 AWS 클라우드 서비스를 이용합니다. Adaptor는 spring-data-jpa 등 안정적이고 성숙한 기술을 쓰고 있으며, AWS가 제공하는 Java SDK는 spring-cloud-aws 모듈과 통합합니다. 궁극적으로 도메인 로직 및 도메인 렌더링은 RESTful API로 노출하며, API Gateway를 경유해 중앙집중관리하며 이는 클라이언트에게 일관된 API 경험을 제공합니다. 
